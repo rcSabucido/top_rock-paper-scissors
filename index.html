@@ -9,26 +9,56 @@
     <script>
         function getComputerChoice() {
             let randomComputerChoice = Math.floor(Math.random() * 3) + 1;
+            let computerChoice;
 
             switch (randomComputerChoice) {
                 case 1:
-                    return console.log("Rock");
+                    computerChoice = "Rock";
                     break;
                 case 2:
-                    return console.log("Paper");
+                    computerChoice = "Paper";
                     break;
                 case 3:
-                    return console.log("Scissors");
+                    computerChoice = "Scissors";
                     break;
             }
+
+            return computerChoice;
         }
 
         function playRound(playerSelection, computerSelection) {
 
+            let caseinsensitivePlayer = playerSelection.toLowerCase();
+            let result;
+
+            if (caseinsensitivePlayer === "rock" && computerSelection === "Rock") {
+                result = "It's a tie";
+            } else if (caseinsensitivePlayer === "rock" && computerSelection == "Paper") {
+                result = "You lose! Paper beats Rock";
+            } else if (caseinsensitivePlayer === "rock" && computerSelection == "Scissors") {
+                result = "You win! Rock beats Scissors";
+            } else if (caseinsensitivePlayer === "paper" && computerSelection == "Rock") {
+                result = "You win! Paper beats Rock";
+            } else if (caseinsensitivePlayer === "paper" && computerSelection == "Paper") {
+                result = "It's a tie!";
+            } else if (caseinsensitivePlayer === "paper" && computerSelection == "Scissors") {
+                result = "You lose! Scissors beats Paper";
+            } else if (caseinsensitivePlayer === "scissors" && computerSelection == "Rock") {
+                result = "You lose! Rock beats Scissors";
+            } else if (caseinsensitivePlayer === "scissors" && computerSelection == "Paper") {
+                result = "You win! Scissors beats Paper";
+            } else if (caseinsensitivePlayer === "scissors" && computerSelection == "Scissors") {
+                result = "It's a tie!";
+            } else {
+                result = "Invalid input, try again!";
+            }
+
+            return result;
         }
 
-        let playerSelection = "Rock";
+        let playerSelection = "Paper";
         let computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
     </script>
 </body>
 </html>
