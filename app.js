@@ -1,3 +1,6 @@
+let playerPoint = 1;
+let computerPoint = 1;
+
 function getComputerChoice() {
     let randomComputerChoice = Math.floor(Math.random() * 3) + 1;
     let computerChoice;
@@ -18,62 +21,54 @@ function getComputerChoice() {
 }
 
 const divContent = document.createElement("div");
+const runningComputerScore = document.querySelector(".runningComputerScore");
+const runningPlayerScore = document.querySelector(".runningPlayerScore");
+const playerScore = document.createElement("int");
+const computerScore = document.createElement("int");
+
+
 
 function playRound(playerSelection, computerSelection) {
 
     let caseinsensitivePlayer = playerSelection.toLowerCase();
     
+    
     if (caseinsensitivePlayer === "rock" && computerSelection === "Rock") {
         divContent.textContent = "It's a tie!";
     } else if (caseinsensitivePlayer === "rock" && computerSelection == "Paper") {
         divContent.textContent = "You lose! Paper beats Rock";
-        //computerPoint++;
+        computerScore.textContent = computerPoint++;
     } else if (caseinsensitivePlayer === "rock" && computerSelection == "Scissors") {
-        divContent.textContent = "You win! Rock beats Scissors";
-        //playerPoint++;
+        divContent.textContent = "You win! Rock beats Scissors";  
+        playerScore.textContent = playerPoint++;
     } else if (caseinsensitivePlayer === "paper" && computerSelection == "Rock") {
         divContent.textContent = "You win! Paper beats Rock";
-        //playerPoint++;
+        playerScore.textContent = playerPoint++;
     } else if (caseinsensitivePlayer === "paper" && computerSelection == "Paper") {
         divContent.textContent = "It's a tie!";
     } else if (caseinsensitivePlayer === "paper" && computerSelection == "Scissors") {
         divContent.textContent = "You lose! Scissors beats Paper";
-        //computerPoint++;
+       computerScore.textContent = computerPoint++;
     } else if (caseinsensitivePlayer === "scissors" && computerSelection == "Rock") {
         divContent.textContent = "You lose! Rock beats Scissors";
-        //computerPoint++;
+        computerScore.textContent = computerPoint++;
     } else if (caseinsensitivePlayer === "scissors" && computerSelection == "Paper") {
         divContent.textContent = "You win! Scissors beats Paper";
-        //playerPoint++;
+        playerScore.textContent = playerPoint++;
     } else if (caseinsensitivePlayer === "scissors" && computerSelection == "Scissors") {
         divContent.textContent = "It's a tie!";
     } else {
         divContent.textContent = "Invalid input, try again!";
     }
 
-}
-
-/*
-let playerPoint = 0;
-let computerPoint = 0;
-
-function game() {
-    let userPrompt = prompt("Rock, Paper, or Scissors?");
-
-    return playRound(userPrompt, getComputerChoice());
 
 }
 
 
-for (let c = 0; c <= 4; c++) {
-    console.log(game());
-}
-*/
 
 const rockBtn = document.querySelector(".rockBtn");
 const paperBtn = document.querySelector(".paperBtn");
 const scissorsBtn = document.querySelector(".scissorsBtn");
-
 const rpsResults = document.querySelector(".rpsResults");
 
 
@@ -89,29 +84,6 @@ scissorsBtn.addEventListener("click", () => {
     playRound("Scissors", getComputerChoice());
 })
 
-
 rpsResults.appendChild(divContent);
-
-
-
-
-
-
-/*
-function scoreCount() {
-    let gameOutcome;
-
-    if (playerPoint > computerPoint) {
-        gameOutcome = "You have more points than your opponent, you win!";
-    } else if (computerPoint > playerPoint) {
-        gameOutcome = "You have less points than your opponent, you lose!";
-    } else {
-        gameOutcome ="Something went wrong.";
-    }
-
-    return gameOutcome;
-}
-
-console.log(scoreCount());
-
-*/
+runningPlayerScore.append(playerScore);
+runningComputerScore.append(computerScore);
